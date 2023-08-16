@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="AvionComercialTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-08-16T01:19:23" hostname="DESKTOP-TDQUFPI" time="0.047">
+  <properties/>
+  <testcase name="testVolar()" classname="AvionComercialTest" time="0.04"/>
+  <testcase name="testConsumoCombustible()" classname="AvionComercialTest" time="0.002"/>
+  <testcase name="testCapacidadCombustible()" classname="AvionComercialTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

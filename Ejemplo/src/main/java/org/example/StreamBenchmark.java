@@ -1,25 +1,46 @@
 package org.example;
 
+import org.openjdk.jmh.annotations.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+@State(Scope.Thread)
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(TimeUnit.MILLISECONDS)
 public class StreamBenchmark {
-    public static void main(String[] args) {
-        int size = 10000000;
+
+    @Param({"10000000"}) // Tamaño de la lista
+    private int size;
+
+    private List<Integer> list;
+
+    @Setup(Level.Trial)
+    public void setUp() {
         Random random = new Random();
-        List<Integer> list = new ArrayList<>();
+        list = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            list.add(random.nextInt(1, 50000));
+            list.add(random.nextInt(50000) + 1);
         }
+    }
 
-        List<Integer> resultSecuencial = list.stream()
+    @Benchmark
+    public List<Integer> filterSequential() {
+        return list.stream()
                 .filter(n -> n % 2 == 0)
                 .collect(Collectors.toList());
+    }
 
-        List<Integer> resultParalelo = list.parallelStream()
+    @Benchmark
+    public List<Integer> filterParallel() {
+        return list.parallelStream()
                 .filter(n -> n % 2 == 0)
                 .collect(Collectors.toList());
+    }
+
+    public static void main(String[] args) throws Exception {
+        org.openjdk.jmh.Main.main(args);
     }
 }
