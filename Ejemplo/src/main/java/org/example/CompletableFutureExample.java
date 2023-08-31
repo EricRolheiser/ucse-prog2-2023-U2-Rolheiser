@@ -13,7 +13,7 @@ public class CompletableFutureExample {
         CompletableFuture<Integer> allTasks = CompletableFuture.allOf(task1, task2, task3, task4)
                 .thenApplyAsync(ignored -> task1.join() + task2.join() + task3.join() + task4.join());
 
-        allTasks.thenAccept(result -> System.out.println("Sum of random numbers: " + result));
+        allTasks.thenAccept(result -> System.out.println("Suma de números aleatorios: " + result));
 
 
         try {

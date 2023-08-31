@@ -22,7 +22,7 @@ public class FastestCompletableFuture {
 
         try {
             int fastestValue = fastestTask.get();
-            System.out.println("Fastest value: " + fastestValue);
+            System.out.println("Valor más rápido: " + fastestValue);
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
